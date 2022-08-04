@@ -3,7 +3,7 @@
 
 //ssize_t read(int fd, void *buf, size_t count);
 
-char    *ft_readandsave(int fd, char *save)
+char    *read_line(int fd, char *storage)
 {
     char    *buffer;
     int     *bytes;
@@ -17,14 +17,16 @@ char    *ft_readandsave(int fd, char *save)
 
 char	*get_next_line(int fd)
 {
-    char    *line;
-    static char    *save;
+    char		*line;
+    static char	*storage;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (0);
-    save = ft_readandsave(fd ,save);
-    if (!save)
+    storage = read_line(fd ,storage);
+    if (!storage)
         return (0);
+	line = get_line(storage);
+	storage = update_line(storage);
     return (line);
 }
 

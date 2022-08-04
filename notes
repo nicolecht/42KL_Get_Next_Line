@@ -10,3 +10,5 @@ Bye World
 -- B\0
 4. When function is called again, the static char is already updated with the 2nd line characters
 -- B\0
+5. cycle repeats until read function reads whatever bytes are left and have the final strjoin
+-- rld\0 (read = 3) then get that line , then update line to null
