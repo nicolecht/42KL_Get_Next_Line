@@ -1,4 +1,5 @@
 //#include "get_next_line.h"
+#include <stdlib.h>
 
 //ssize_t read(int fd, void *buf, size_t count);
 
@@ -10,14 +11,14 @@ char    *ft_readandsave(int fd, char *save)
     buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
     if (!buffer)
         return (0);
-    bytes = 1;
+    //bytes = 1;
 
 }
 
 char	*get_next_line(int fd)
 {
     char    *line;
-    char    *save;
+    static char    *save;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (0);
@@ -39,7 +40,7 @@ int main(void)
     fd1 = open("test1.txt", O_RDONLY);
     printf("fd = %d\n", fd1);
     i = 1;
-    while (i < 3)
+    while (i < 5)
     {
         line = get_next_line(fd1);
         printf("Line %d : %s", i, line);
