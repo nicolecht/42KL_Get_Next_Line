@@ -103,10 +103,10 @@ int main(void)
     char    *line;
     int     i;
     int     fd1;
-    fd1 = open("test1.txt", O_RDONLY);
+    fd1 = open("test3.txt", O_RDONLY);
     printf("fd = %d\n", fd1);
     i = 1;
-    while (i < 7)
+    while (i < 5)
     {
         line = get_next_line(fd1);
         printf("Line %d : %s", i, line);

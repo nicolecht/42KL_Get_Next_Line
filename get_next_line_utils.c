@@ -28,29 +28,35 @@ char    *ft_strchr(char *str, int c)
     return (0);
 }
 
-char    *ft_strjoin(char *str1, char *str2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-    char    *dest;
-    size_t  i;
-    size_t  j;
+	char	*dest;
+	size_t	i;
+	size_t	j;
 
-    if (!str1 || !str2)
-        return (0);
-    dest = (char *)malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
-    if (!dest)
-        return (0);
-    i = 0;
-    while (str1[i])
+    if (!s1)
     {
-        dest[i] = str1[i];
-        i++;
+        s1 = (char *)malloc(1 * sizeof(char));
+        s1[0] = '\0';
     }
-    j = 0;
-    while (str2[j])
-    {
-        dest[i + j] = str2[j];
-        j++;
-    }
-    dest[i + j] = '\0';
+	if (!s1 || !s2)
+		return (0);
+	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!dest)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		dest[i + j] = s2[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+    free(s1);
     return (dest);
 }

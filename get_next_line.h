@@ -13,7 +13,7 @@ char    *read_line(int fd, char *str);
 char    *get_line(char *str);
 char    *update_line(char *str);
 char    *ft_strchr(char *str, int c);
-char    *ft_strjoin(char *str1, char *str2);
+char    *ft_strjoin(char *s1, char *s2);
 size_t  ft_strlen(char *str);
 
 #endif
