@@ -1,38 +1,102 @@
-//#include "get_next_line.h"
-#include <stdlib.h>
+#include "get_next_line.h"
 
-//ssize_t read(int fd, void *buf, size_t count);
-
-char    *read_line(int fd, char *storage)
+char    *read_line(int fd, char *str)
 {
-    char    *buffer;
-    int     *bytes;
+    char    *buf;
+    int     bytes_read;
 
-    buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-    if (!buffer)
+    buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+    if (!buf)
         return (0);
-    //bytes = 1;
+    bytes_read = 1;
+    while (!ft_strchr(str, '\n') && bytes_read != 0)
+    {
+        bytes_read = read(fd, buf, BUFFER_SIZE);
+        if(bytes_read == -1)
+        {
+            free(buf);
+            return(0);
+        }
+        buf[bytes_read] = '\0';
+        str = ft_strjoin(str, buf);
+    }
+    free(buf);
+    return(str);
+}
 
+char    *get_line(char *str)
+{
+    char    *edited_line;
+    int     i;
+
+    i = 0;
+    if (!str[i])
+        return (0);
+    while (str[i] && str[i] != '\n')
+        i++;
+    edited_line = malloc(sizeof(char) * (i + 2)); // 2 for \n and '\0'
+    if (!edited_line)
+        return (0);
+    i = 0;
+    while (str[i] && str[i] != '\n') // separating the lines by '\0' or \n
+    {
+        edited_line[i] = str[i];
+        i++;
+    }
+    if (str[i] == '\n')
+    {
+        edited_line[i] = str[i];
+        i++;
+    }
+    edited_line[i] = '\0';
+    return (edited_line);
+}
+
+char    *update_line(char *str)
+{
+    char    *updated;
+    int     i;
+    int     j;
+
+    i = 0;
+    while (str[i] && str[i] != '\n')
+        i++;
+    if (!str[i])
+    {
+        free(str);
+        return (0);
+    }
+    updated = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+    if (!updated)
+        return (0);
+    i++; // skip the \n
+    j = 0;
+    while (str[i])
+    {
+        updated[j++] = str[i++];
+    }
+    updated[j] = '\0';
+    free(str);
+    return (updated);
 }
 
 char	*get_next_line(int fd)
 {
     char		*line;
-    static char	*storage;
+    static char	*str;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (0);
-    storage = read_line(fd ,storage);
-    if (!storage)
+    str = read_line(fd ,str);
+    if (!str)
         return (0);
-	line = get_line(storage);
-	storage = update_line(storage);
+	line = get_line(str);
+	str = update_line(str);
     return (line);
 }
 
 #include <stdio.h>
 #include <fcntl.h>
-#include <unistd.h>
 
 int main(void)
 {
@@ -42,7 +106,7 @@ int main(void)
     fd1 = open("test1.txt", O_RDONLY);
     printf("fd = %d\n", fd1);
     i = 1;
-    while (i < 5)
+    while (i < 7)
     {
         line = get_next_line(fd1);
         printf("Line %d : %s", i, line);
