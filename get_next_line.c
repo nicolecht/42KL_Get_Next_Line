@@ -6,9 +6,26 @@
 /*   By: nchee <nchee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 11:41:10 by nchee             #+#    #+#             */
-/*   Updated: 2022/08/08 12:12:41 by nchee            ###   ########.fr       */
+/*   Updated: 2022/08/08 12:19:27 by nchee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+Example:
+Hello World Die\n
+Bye World
+
+1. Reads one line (may contain starting part of 2nd line if buffer is beyond 1st line's \n)
+-- Hello World Die\nB\0
+2. Get that 1st line without chars after \n aka 2nd line characters and return it
+-- Hello World Die\n\0
+3. Update the line to haves only the chars after \n aka 2nd line characters
+-- B\0
+4. When function is called again, the static char is already updated with the 2nd line characters
+-- B\0
+5. cycle repeats until read function reads whatever bytes are left and have the final strjoin
+-- rld\0 (read = 3) then get that line , then update line to null
+*/
 
 #include "get_next_line.h"
 
@@ -108,7 +125,7 @@ char	*get_next_line(int fd)
 }
 
 // #include <stdio.h>
-// #include <fcntl.h>s
+// #include <fcntl.h>
 
 // int main(void)
 // {
