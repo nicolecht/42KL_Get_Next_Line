@@ -1,31 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nchee <nchee@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/08 11:41:08 by nchee             #+#    #+#             */
+/*   Updated: 2022/08/08 12:12:42 by nchee            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-    size_t i;
-    
-    i = 0;
-    while (str[i] != '\0')
-        i++;
-    return (i);
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
-char    *ft_strchr(char *str, int c)
+char	*ft_strchr(char *str, int c)
 {
-    int i;
-    
-    i = 0;
-    if (!str)
-        return (0);
-    while (str[i])
-    {
-        if (str[i] == (char)c)
-            return ((char *)(str + i));
-        i++;
-    }
-    if (str[i] == (char)c)
-        return ((char *)(str + i));
-    return (0);
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == (char)c)
+			return ((char *)(str + i));
+		i++;
+	}
+	if (str[i] == (char)c)
+		return ((char *)(str + i));
+	return (0);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -34,11 +46,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-    if (!s1)
-    {
-        s1 = (char *)malloc(1 * sizeof(char));
-        s1[0] = '\0';
-    }
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
 	if (!s1 || !s2)
 		return (0);
 	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
@@ -57,6 +69,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	dest[i + j] = '\0';
-    free(s1);
-    return (dest);
+	free(s1);
+	return (dest);
 }
