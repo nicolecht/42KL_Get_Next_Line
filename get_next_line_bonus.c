@@ -6,7 +6,7 @@
 /*   By: nchee <nchee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 11:41:00 by nchee             #+#    #+#             */
-/*   Updated: 2022/08/08 12:13:14 by nchee            ###   ########.fr       */
+/*   Updated: 2022/08/08 13:04:07 by nchee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,13 @@ char	*get_next_line(int fd)
 // 	while (i < 6)
 // 	{
 // 		line = get_next_line(fd1);
-// 		printf("line [%02d]: %s", i, line);
+// 		printf("fd [%d] | line [%02d]: %s", fd1, i, line);
 // 		free(line);
 // 		line = get_next_line(fd2);
-// 		printf("line [%02d]: %s", i, line);
+// 		printf("fd [%d] | line [%02d]: %s", fd2, i, line);
 // 		free(line);
 // 		line = get_next_line(fd3);
-// 		printf("line [%02d]: %s", i, line);
+// 		printf("fd [%d] | line [%02d]: %s", fd3, i, line);
 // 		free(line);
 // 		i++;
 // 	}

@@ -6,7 +6,7 @@
 /*   By: nchee <nchee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 11:41:08 by nchee             #+#    #+#             */
-/*   Updated: 2022/08/08 12:12:42 by nchee            ###   ########.fr       */
+/*   Updated: 2022/08/08 13:04:04 by nchee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dest)
 		return (0);
-	i = 0;
-	while (s1[i])
-	{
+	i = -1;
+	while (s1[++i])
 		dest[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
+	j = -1;
+	while (s2[++j])
 		dest[i + j] = s2[j];
-		j++;
-	}
 	dest[i + j] = '\0';
 	free(s1);
 	return (dest);
