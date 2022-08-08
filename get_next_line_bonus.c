@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*str[1024];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1023)
 		return (0);
 	str[fd] = read_line (fd, str[fd]);
 	if (!str[fd])
