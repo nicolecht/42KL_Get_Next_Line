@@ -1,4 +1,4 @@
-# 42KL_Get_Next_Line
+# 42_Get_Next_Line
 
 Rank 1 project for 42 Core Programme.
 
